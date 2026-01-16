@@ -1,0 +1,245 @@
+/* =====================
+   RESET
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: black;
+  color: white;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* =====================
+   SCENE
+===================== */
+.scene {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.dare-text {
+  margin-top: 25px;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  opacity: 0.85;
+  text-align: center;
+}
+
+/* =====================
+   DOOR
+===================== */
+.door {
+  width: 180px;
+  height: 320px;
+  background: linear-gradient(90deg, #5a2d0c, #3a1b07);
+  position: relative;
+  transform-origin: left;
+  transition: transform 1.8s ease;
+  cursor: pointer;
+  box-shadow: inset -6px 0 12px rgba(0,0,0,0.6);
+}
+
+.door.open {
+  transform: rotateY(-110deg);
+}
+
+.panel {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  height: 120px;
+  border: 2px solid rgba(0,0,0,0.4);
+}
+
+.panel.top {
+  top: 30px;
+}
+
+.panel.bottom {
+  bottom: 30px;
+}
+
+.handle {
+  position: absolute;
+  right: 15px;
+  top: 160px;
+  width: 14px;
+  height: 14px;
+  background: gold;
+  border-radius: 50%;
+}
+
+/* Door zoom-in */
+.scene.zoom-in {
+  animation: zoomIntoDoor 1.6s ease forwards;
+}
+
+@keyframes zoomIntoDoor {
+  0% { transform: scale(1); filter: brightness(1); }
+  70% { transform: scale(1.6); filter: brightness(0.6); }
+  100% { transform: scale(2.2); filter: brightness(0); }
+}
+
+/* =====================
+   BED LAMP
+===================== */
+.bed-lamp {
+  position: relative;
+  width: 160px;
+  height: 240px;
+  transition: opacity 1.2s ease;
+}
+
+/* Shade */
+.lamp-shade {
+  width: 160px;
+  height: 90px;
+  background: #d6b98c;
+  border-radius: 0 0 25px 25px;
+  box-shadow: inset 0 -6px 12px rgba(0,0,0,0.35);
+  pointer-events: none;
+}
+
+/* Stand */
+.lamp-stand {
+  width: 20px;
+  height: 90px;
+  background: #444;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+/* Lamp ON */
+.bed-lamp.on .lamp-shade {
+  box-shadow: 0 0 90px 45px rgba(255,220,150,0.9);
+}
+
+/* Fade lamp */
+.bed-lamp.fade-out {
+  opacity: 0;
+}
+
+/* =====================
+   PULL CHAIN
+===================== */
+.chain {
+  position: absolute;
+  right: -20px;
+  top: 80px;
+  width: 60px;
+  height: 140px;
+  cursor: pointer;
+  z-index: 3000;
+  pointer-events: auto;
+}
+
+.chain::before {
+  content: "";
+  position: absolute;
+  left: 28px;
+  top: 0;
+  width: 4px;
+  height: 100px;
+  background: silver;
+}
+
+.chain::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 100px;
+  width: 16px;
+  height: 16px;
+  background: silver;
+  border-radius: 50%;
+}
+
+/* =====================
+   GHOST (FULLSCREEN)
+===================== */
+.ghost {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 4000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Enable interaction ONLY when visible */
+.ghost.appear {
+  pointer-events: auto;
+}
+
+/* Ghost image */
+.ghost img {
+  width: 60vw;
+  max-width: 600px;
+  filter: drop-shadow(0 0 60px rgba(180,220,255,0.7));
+}
+
+/* Ghost text */
+.ghost p {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+/* Ghost animation */
+.ghost.appear {
+  animation: ghostEnter 5s ease forwards;
+}
+
+@keyframes ghostEnter {
+  0% { opacity: 0; transform: scale(0.85); filter: blur(8px); }
+  40% { opacity: 0.4; }
+  70% { opacity: 0.8; transform: scale(1); filter: blur(3px); }
+  100% { opacity: 1; transform: scale(1.1); filter: blur(0); }
+}
+
+/* =====================
+   YES BUTTON
+===================== */
+.yes-btn {
+  text-decoration: none;   /* remove underline */
+  display: inline-block;
+  text-align: center;
+}
+
+
+.yes-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* =====================
+   DARK ATMOSPHERE
+===================== */
+.scene.dark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.75) 75%);
+}

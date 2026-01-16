@@ -1,0 +1,69 @@
+body {
+  background: linear-gradient(135deg, #000, #1a1a1a);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.birthday {
+  text-align: center;
+}
+
+.pop {
+  font-size: 3rem;
+  animation: popIn 1.2s ease forwards;
+}
+
+.fade {
+  font-size: 1.3rem;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+  animation-delay: 1.5s;
+}
+
+.fade.delay {
+  animation-delay: 3s;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+/* BIRTHDAY IMAGE */
+.bday-img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 25px;
+
+  border-radius: 16px;
+  opacity: 0;
+
+  animation: fadeInImg 1.5s ease forwards;
+}
+
+/* IMAGE FADE */
+@keyframes fadeInImg {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
